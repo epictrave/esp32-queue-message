@@ -29,6 +29,7 @@ typedef struct QUEUE {
 
 esp_err_t queue_init(void);
 esp_err_t queue_add_message(const char *text);
+esp_err_t queue_add_report(const char *text);
 Payload *queue_get_payload(void);
 
 #ifdef __cplusplus

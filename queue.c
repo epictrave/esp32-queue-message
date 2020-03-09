@@ -39,13 +39,12 @@ esp_err_t queue_add(const char *text, PayloadType type) {
   return ESP_OK;
 }
 
-esp_err_t queue_add_message(const char *text, PayloadType type) {
+esp_err_t queue_add_message(const char *text) {
   return queue_add(text, MESSAGE);
 }
 
-esp_err_t queue_add_report(const char *text, PayloadType type) {
-  return queue_add(text, REPORT);
-}
+esp_err_t queue_add_report(const char *text) { return queue_add(text, REPORT); }
+
 Payload *queue_get_payload(void) {
   if (queue == NULL) {
     ESP_LOGE(TAG,
