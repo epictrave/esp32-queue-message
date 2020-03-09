@@ -14,20 +14,22 @@ extern "C" {
 #include "stdlib.h"
 #include "string.h"
 
-typedef struct MESSAGE {
+typedef enum { MESSAGE, REPORT } PayloadType;
+typedef struct QUEUE_PAYLOAD {
   char *text;
+  PayloadType type;
   struct MESSAGE *next;
-} Message;
+} Payload;
 
-typedef struct MESSAGE_QUEUE {
-  Message *front;
-  Message *rear;
+typedef struct QUEUE {
+  Payload *front;
+  Payload *rear;
   int count;
-} MessageQueue;
+} Queue;
 
-esp_err_t queue_message_init(void);
-esp_err_t queue_message_add_message(const char *text);
-char *queue_message_get_message(void);
+esp_err_t queue_init(void);
+esp_err_t queue_add_message(const char *text);
+Payload *queue_get_payload(void);
 
 #ifdef __cplusplus
 }
